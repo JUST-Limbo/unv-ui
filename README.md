@@ -1,19 +1,21 @@
 # unv-ui
 
-## Project setup
+## Requirements
+
+|      | Minimum |
+| ---- | ------- |
+| Vue  | 2.6.14  |
+
+## Install
 ```
-yarn install
+npm install unv-ui
 ```
 
-### Compiles and hot-reloads for development
-```
-yarn serve
+## Quick Start
+
+```js
+import Vue from 'vue'
+import UnvUi from 'unv-ui'
+Vue.use(UnvUi)
 ```
 
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
