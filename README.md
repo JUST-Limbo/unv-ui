@@ -92,4 +92,5 @@ export default {
 
 + UvSelect
 + v-form
++ UvDialogView
 + changelog
