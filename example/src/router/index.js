@@ -10,6 +10,11 @@ const routes = [
         name: 'home',
         component: HomeView,
     },
+    {
+        path: '/area',
+        name: 'area',
+        component: () => import('../views/UseArea.vue'),
+    },
 ];
 
 const router = new VueRouter({

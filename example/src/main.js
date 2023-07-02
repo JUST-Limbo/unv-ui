@@ -3,8 +3,12 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 
-import TestCmp from '../../components/testcmp';
-Vue.use(TestCmp);
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+Vue.use(ElementUI);
+
+import UvArea from '../../components/area'
+Vue.use(UvArea);
 
 Vue.config.productionTip = false;
 
