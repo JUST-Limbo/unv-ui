@@ -11,10 +11,6 @@ export default {
     name: 'SelectOption1',
     inheritAttrs: false,
     inject: ['$Selector'],
-    model: {
-        prop: 'value',
-        event: 'select',
-    },
     props: {
         value: [String, Number],
         data: Array,

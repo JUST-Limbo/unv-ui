@@ -1,7 +1,9 @@
 import UvArea from './area';
+import UvSelect from './select';
 
 const components = {
     UvArea,
+    UvSelect,
 };
 
 export default {
