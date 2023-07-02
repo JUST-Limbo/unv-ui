@@ -44,6 +44,8 @@ Vue.use(UnvUi)
 
 你只需要关注`省市区`单个选择器组件的实现。
 
+`UvArea`只做数据层兼容，你可以使用任何组件选择器来配合`UvArea`（比如`el-select`、`a-select`或自己实现的选择器）。
+
 > `UvArea`的行政区划数据来自[`@/vant/area-data`](https://github.com/youzan/vant/tree/main/packages/vant-area-data)。
 
 **Usage**
