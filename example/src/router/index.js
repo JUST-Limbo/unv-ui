@@ -15,6 +15,11 @@ const routes = [
         name: 'area',
         component: () => import('../views/UseArea.vue'),
     },
+    {
+        path: '/select',
+        name: 'select',
+        component: () => import('../views/select'),
+    },
 ];
 
 const router = new VueRouter({

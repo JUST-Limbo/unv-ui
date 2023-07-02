@@ -7,8 +7,8 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 
-import UvArea from '../../components/area'
-Vue.use(UvArea);
+import UnvUI from '../../components'
+Vue.use(UnvUI);
 
 Vue.config.productionTip = false;
 
