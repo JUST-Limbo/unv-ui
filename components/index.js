@@ -1,7 +1,7 @@
-import TestCmp from './testcmp';
+import UvArea from './area';
 
 const components = {
-    TestCmp,
+    UvArea,
 };
 
 export default {
