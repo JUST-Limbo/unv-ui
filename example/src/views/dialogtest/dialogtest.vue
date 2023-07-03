@@ -11,6 +11,7 @@ export default {
 	methods: {
 		showDialog() {
 			const $UvDialog = this.$UvDialog
+            // 或 new UvDialog
 			new $UvDialog(
 				{
 					view: dialogContent,
