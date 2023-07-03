@@ -247,10 +247,123 @@ methods: {
 },
 ```
 
+### UvDialog
 
+函数式弹窗，将`Vue`组件赋值给参数`view`，调用`show`可以拉起一个弹窗，弹窗的内容是`view`传入的`Vue`组件内容。
+
+组织弹窗功能时，你不再需要导入一个`弹窗.vue`组件，在`components`声明然后再在`template`模板中使用`<弹窗></弹窗>`；更不需要声明一个`isShow`来控制弹窗的开关。
+
+你只需要专注弹窗的内容组件实现即可，这使我们的业务代码的内聚性更高。
+
+**Usage**
+
+```vue
+<template>
+	<div>
+		<div><button @click="showDialog">showDialog</button></div>
+	</div>
+</template>
+
+<script>
+import dialogContent from "./cmp/dialogContent.vue"
+export default {
+	name: "dialogtest",
+	methods: {
+		showDialog() {
+			const $UvDialog = this.$UvDialog
+      // 或 new UvDialog
+			new $UvDialog(
+				{
+					view: dialogContent,
+					router: this.$router,
+					store: this.$store
+				},
+				{
+					originPage: "dialogTest",
+					onConfirm: (data) => {
+						console.log("onConfirm", data)
+					}
+				}
+			).show()
+		}
+	}
+}
+</script>
+
+```
+
+**dialogContent**
+
+```vue
+<template>
+	<div class="dialog-content">
+		<div>{{ originPage }}</div>
+		<div>
+			<div>{{ msg }}</div>
+			<el-input v-model="msg" placeholder="请输入内容"></el-input>
+			<div style="text-align: right">
+				<el-button type="primary" @click="printRoute"> 输出$route $store </el-button>
+				<el-button @click="close">取消</el-button>
+				<el-button type="primary" @click="confirm">确认</el-button>
+			</div>
+		</div>
+	</div>
+</template>
+
+<script>
+export default {
+	name: "dialogContent",
+	data() {
+		return {
+			msg: "123"
+		}
+	},
+	methods: {
+		close() {
+			this.$emit("hide")
+		},
+		printRoute() {
+			console.log(this.$route)
+			console.log(this.$router)
+			console.log(this.$store)
+		},
+		confirm() {
+			this.onConfirm && this.onConfirm(this.msg)
+			this.close()
+		}
+	}
+}
+</script>
+
+<style>
+.dialog-content {
+	width: 500px;
+	height: 300px;
+	background: white;
+}
+</style>
+
+```
+
+**Parameter Type**
+
+```js
+new UvDialog({view,router,store},cfg)
+```
+
+| 参数   | 说明                                                         | 类型         | 默认值 |
+| ------ | ------------------------------------------------------------ | ------------ | ------ |
+| view   | 弹窗的内容组件                                               | VueComponent |        |
+| router | 路由器，如果你需要在`view`中访问路由，那么该参数必填，router:this.$router | VueRouter    |        |
+| store  | 状态管理器，如果你需要在`view`中访问`Vuex`的状态，那么该参数必填，store:this.$store | Store        |        |
+| cfg    | 额外的参数，这相当于给`view`组件加一个`mixin`，你可以在`view`组件中通过`this`访问到`cfg`的内容，通常用来传递回调事件或者传入初始参数。 | Any          |        |
+
+**todo**
+
++ show支持promise
++ 略去router和store配置
 
 ## todo
 
 + v-form
-+ UvDialogView
 + changelog
