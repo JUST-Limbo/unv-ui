@@ -360,6 +360,7 @@ new UvDialog({view,router,store},cfg)
 
 **todo**
 
++ 支持挂载到指定的DOM，而不是只挂载`document.body`
 + show支持promise
 + 略去router和store配置
 
