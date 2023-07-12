@@ -2,11 +2,15 @@
 
 ## Introduce
 
-`unv-ui`并不是一个严格意义上的`UI`库，它更像是一个工具库。
+`unv-ui`并不是一个严格意义上的`UI`组件库，它更像是一个工具库。它也包含一些公共的指令，比如`v-form`。
 
-它的部分组件实际上并没有任何样式，比如`UvSelect`、`UvArea`只是做了数据的兼容层。
+它的很多组件实际上并没有任何样式，比如`UvSelect`、`UvArea`只是做了数据的兼容层。
 
-它也包含一些公共的指令，比如`v-form`。
+**为什么要做数据兼容层组件，而不是做一个带有UI样式的完全体组件？**
+
+因为在很多toc的页面中，UI的样式是要靠自己实现的，但是很多通用的功能写到具体的组件中难以维护。
+
+比如我想要一个省市区选择器：它可以是弹窗形式，也可以是并列三连的选择器，也可以是级联选择器。从功能上讲他们都是省市区选择器，然而他们的UI是不同的。数据兼容层组件可以让开发者可以更专注实现组件的视图部分。
 
 ## Links
 
@@ -363,6 +367,75 @@ new UvDialog({view,router,store},cfg)
 + 支持挂载到指定的DOM，而不是只挂载`document.body`
 + show支持promise
 + 略去router和store配置
+
+### UvCountDown
+
+倒计时
+
+```vue
+<template>
+	<div>
+		<el-button type="primary" @click="flag = !flag">toggle</el-button>
+		<UvCountDown :value="futureDeadline" v-if="flag">
+			<template #default="{ d, h, m, s }">
+				{{ d }}
+				{{ h }}
+				{{ m }}
+				{{ s }}
+			</template>
+		</UvCountDown>
+		<keepAlive>
+			<UvCountDown :value="lastDeadline" v-if="flag">
+				<template #default="{ d, h, m, s }">
+					{{ d }}
+					{{ h }}
+					{{ m }}
+					{{ s }}
+				</template>
+			</UvCountDown>
+		</keepAlive>
+	</div>
+</template>
+
+<script>
+export default {
+	data() {
+		return {
+			futureDeadline: Date.now() + 1000 * 60 * 70,
+			lastDeadline: Date.now() - 1000 * 60 * 60,
+			flag: true
+		}
+	}
+}
+</script>
+
+```
+
+**CountDown Attributes**
+
+| 参数        | 说明                                                         | 类型               | 可选值     | 默认值 |
+| ----------- | ------------------------------------------------------------ | ------------------ | ---------- | ------ |
+| value       | 确定的时间点，必填，支持Date对象/毫秒数/YYYY-MM-DD hh:mm:ss三种格式 | Date/Number/String |            |        |
+| timeIndices | 是否开启倒计时功能                                           | Boolean            | true/false | true   |
+
+**CountDown Event**
+
+| 事件名 | 说明                                             | 回调参数 |
+| ------ | ------------------------------------------------ | -------- |
+| start  | 开始倒计时，在mounted、activated阶段触发         |          |
+| pause  | 暂停倒计时，在deactivated、beforeDestroy阶段触发 |          |
+| end    | 倒计时结束，达到目标时间                         |          |
+
+**CountDown Methods**
+
+| 参数           | 说明       |      |
+| -------------- | ---------- | ---- |
+| startCountDown | 开始倒计时 |      |
+| pauseCountDown | 暂停倒计时 |      |
+
+**todo**
+
++ 目前修改value的值会让暂停状态下的CountDown启动倒计时，这或许是个bug
 
 ## todo
 

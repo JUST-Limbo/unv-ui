@@ -52,7 +52,7 @@ export default {
 		},
 		value: {
 			type: [String, Date, Number],
-			default: () => ""
+			required: true
 		}
 	},
 	data() {
@@ -65,13 +65,17 @@ export default {
 		}
 	},
 	activated() {
-		this.startCountDown()
+		if (!this.rafId) {
+			this.startCountDown()
+		}
 	},
 	deactivated() {
 		this.pauseCountDown()
 	},
 	mounted() {
-		this.startCountDown()
+		if (!this.rafId) {
+			this.startCountDown()
+		}
 	},
 	watch: {
 		value() {
@@ -101,8 +105,8 @@ export default {
 
 			if (remainingTime.d === 0 && remainingTime.h === 0 && remainingTime.m === 0 && remainingTime.s === 0) {
 				// 达到目标时间，停止递归
-				this.$emit("end")
 				this.rafId = ""
+				this.$emit("end")
 				return
 			}
 
