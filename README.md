@@ -378,7 +378,9 @@ new UvDialog({view,router,store},cfg)
 
 ### UvCountDown
 
-倒计时
+倒计时，基于`requestAnimation`。
+
+**Usage**
 
 ```vue
 <template>
