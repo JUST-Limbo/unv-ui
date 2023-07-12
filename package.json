@@ -1,6 +1,6 @@
 {
     "name": "unv-ui",
-    "version": "0.1.10",
+    "version": "0.1.11",
     "description": "unit vue2 components",
     "main": "./dist/unv-ui.umd.js",
     "keywords": [

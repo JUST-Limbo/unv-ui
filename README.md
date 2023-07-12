@@ -91,6 +91,14 @@ export default {
 </script>
 ```
 
+**UvArea Slot**
+
+| name     | 说明 | 参数      |
+| -------- | ---- | --------- |
+| province | 省   | {options} |
+| city     | 市   | {options} |
+| area     | 区   | {options} |
+
 **todo**
 
 + 行政区划源数据支持自定义
@@ -432,6 +440,12 @@ export default {
 | -------------- | ---------- | ---- |
 | startCountDown | 开始倒计时 |      |
 | pauseCountDown | 暂停倒计时 |      |
+
+**CountDown Slot**
+
+| name | 说明                                                 | 参数           |
+| ---- | ---------------------------------------------------- | -------------- |
+| -    | 用于向视图传递数据的插槽，d-h-m-s分别表示日-时-分-秒 | { d, h, m, s } |
 
 **todo**
 
