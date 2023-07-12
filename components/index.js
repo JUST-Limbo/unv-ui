@@ -1,11 +1,13 @@
 import UvArea from './area';
 import UvSelect from './select';
 import UvDialog from './dialogView'
+import UvCountDown from './countDown'
 
 const components = {
-    UvArea,
-    UvSelect,
-};
+	UvArea,
+	UvSelect,
+	UvCountDown,
+}
 
 const plugins = {
 	UvDialog
