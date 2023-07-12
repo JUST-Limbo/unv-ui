@@ -21,6 +21,11 @@ const routes = [
 		component: () => import("../views/select")
 	},
 	{
+		path: "/countdown",
+		name: "countdown",
+		component: () => import("../views/countdown")
+	},
+	{
 		path: "/dialogtest",
 		name: "dialogtest",
 		component: () => import("../views/dialogtest/dialogtest.vue")
