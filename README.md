@@ -232,6 +232,7 @@ export default {
 | ------------- | ------------ | ------------------- | ------ | ------ |
 | value/v-model | 绑定值，必填 | string/number/Array |        |        |
 | multiple      | 多选         | boolean             |        | false  |
+| tag           | 自定义标签   | string              |        | div    |
 
 **Select Provide**
 
@@ -427,6 +428,7 @@ export default {
 | ----------- | ------------------------------------------------------------ | ------------------ | ---------- | ------ |
 | value       | 确定的时间点，必填，支持Date对象/毫秒数/YYYY-MM-DD hh:mm:ss三种格式 | Date/Number/String |            |        |
 | timeIndices | 是否开启倒计时功能                                           | Boolean            | true/false | true   |
+| tag         | 自定义标签                                                   | string             |            | div    |
 
 **CountDown Event**
 

@@ -1,14 +1,12 @@
-<template>
-    <div>
-        <slot></slot>
-    </div>
-</template>
-
 <script>
 export default {
     name: 'UvSelect',
     inheritAttrs: false,
     props: {
+        tag:{
+            type:String,
+            default:'div'
+        },
         value: {
             required: true,
         },
@@ -21,6 +19,9 @@ export default {
         return {
             $Selector: this,
         };
+    },
+    render(h){
+        return h(this.tag,this.$slots.default)
     },
     created() {
         if (this.multiple && !Array.isArray(this.value)) {

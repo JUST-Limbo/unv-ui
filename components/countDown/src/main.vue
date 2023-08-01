@@ -1,16 +1,3 @@
-<template>
-	<div>
-		<slot
-			v-bind="{
-				d,
-				h,
-				m,
-				s
-			}"
-		></slot>
-	</div>
-</template>
-
 <script>
 function getTimeDuration(futureTime) {
 	const currentTime = new Date()
@@ -45,6 +32,10 @@ function getTimeDuration(futureTime) {
 export default {
 	name: "UvCountDown",
 	props: {
+        tag:{
+            type:String,
+            default:'div'
+        },
 		// 是否开启倒计时功能
 		timeIndices: {
 			type: Boolean,
@@ -64,6 +55,16 @@ export default {
 			s: ""
 		}
 	},
+    render(h){
+        return h(this.tag,[
+            this.$scopedSlots.default({
+                d:this.d,
+                h:this.h,
+                m:this.m,
+                s:this.s,
+            })
+        ])
+    },
 	activated() {
 		if (!this.rafId) {
 			this.startCountDown()
